@@ -58,3 +58,9 @@ li {
 li:hover {
   background: #dcdde1;
 }
+button{
+  background: #dbecc4;
+  border: none;
+  border-radius: 12px;
+  margin-top: 10px;
+}

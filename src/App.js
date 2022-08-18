@@ -5,8 +5,8 @@ import MyRecipesComponent from './MyRecipesComponent';
 
 function App() {
 
-  const API_ID = "cd47cb39";
-  const API_KEY = "ce67599affd4616444a736db70447694	—";
+  const API_ID = "ef07ef84";
+  const API_KEY = "dc98c2334a222dcb7c3b807ffd6f0b39";
 
   const [mySearch, setMySearch] = useState('');
   const [myRecipes, setMyRecipes] = useState([]);
@@ -17,13 +17,13 @@ function App() {
   }, [wordSubmitted])
 
   const menu = async () => {
-    const response = await fetch(`https://api.edamam.com/api/recipes/v2?type=public&q=avocado&app_id=${API_ID}&app_key=${API_KEY}`);
+    const response = await fetch(`https://api.edamam.com/api/recipes/v2?type=public&q=${wordSubmitted}&app_id=${API_ID}&app_key=${API_KEY}`);
     const data = await response.json();
-    console.log(data.hits)
     setMyRecipes(data.hits)
   }
 
   const myRecipeSearch = (e) => {
+    console.log(e.target.value)
     setMySearch(e.target.value)
   }
 
@@ -55,11 +55,12 @@ function App() {
       </div>
 
       {myRecipes.map(element => (
-        <MyRecipesComponent
-          label={element.recipe.label}
+        <MyRecipesComponent label={element.recipe.label}
           image={element.recipe.image}
-          calories={element.calories.recipe}
-          ingredients={element.recipe.ingredientLines} />
+          calories={element.recipe.calories}
+          ingredients={element.recipe.ingredientLines}
+        />
+
       ))}
     </div>
   );
